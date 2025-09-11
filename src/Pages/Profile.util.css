@@ -1,0 +1,137 @@
+
+
+/* Full page neon aura background */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #0f0f1f, #000000 80%);
+  overflow-x: hidden;
+  position: relative;
+  color: #fff;
+}
+
+/* Neon aura overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 180deg at 50% 50%, #00ffe0, #ff00ff, #00ffe0);
+  animation: rotate 15s linear infinite;
+  opacity: 0.08;
+  z-index: 0;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Profile card stays above the aura */
+.profile-wrapper {
+  position: relative;
+  z-index: 1;
+  background: rgba(20, 20, 30, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3),
+    0 0 40px rgba(255, 0, 255, 0.2);
+  color: #fff;
+  padding: 2rem;
+  margin-top: 4rem;
+  width:80%;
+  margin-left:auto;
+  margin-bottom: 5rem;
+}
+
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* keep content above neon aura */
+.profile-header,
+.profile-stats,
+.profile-img,
+.profile-name,
+.profile-username,
+.badges,
+.btn-neon {
+  position: relative;
+  z-index: 1;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #00ffe0;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.5),
+              0 0 20px rgba(255, 0, 255, 0.3);
+  
+}
+
+.profile-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.profile-username {
+  font-size: 0.9rem;
+  color: #cfcfcf;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #00ffe0;
+}
+
+.badge-glass {
+  padding: 4px 10px;
+  background: rgba(0, 255, 224, 0.2);
+  color: #00ffe0;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  box-shadow: 0 0 6px rgba(0, 255, 255, 0.5);
+}
+
+.btn-neon {
+  background: linear-gradient(135deg, #00ffe0, #ff00ff);
+  border: none;
+  border-radius: 12px;
+  padding: 0.85rem 1.2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+}
+
+.btn-neon:hover {
+  background: linear-gradient(135deg, #00ccff, #cc00ff);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5),
+              0 0 40px rgba(255, 0, 255, 0.4);
+}

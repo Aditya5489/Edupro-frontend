@@ -1,0 +1,146 @@
+/* ===== Full Page Background ===== */
+.quiz-page-wrapper {
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #0f0f1f, #000000 80%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden; /* prevent horizontal scroll */
+  overflow-y: auto;
+  padding: 2rem;
+  position: relative;
+}
+
+.quiz-page-wrapper::before {
+  content: "";
+  position: fixed; /* change from absolute to fixed to prevent overflow */
+  top: 0;
+  left: 0;
+  width: 100vw; /* full viewport width */
+  height: 100vh; /* full viewport height */
+  background: conic-gradient(from 180deg at 50% 50%, #00ffe0, #ff00ff, #00ffe0);
+  animation: rotate 14s linear infinite;
+  opacity: 0.08;
+  z-index: 0;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== Page Title ===== */
+.quiz-title {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00ffe0, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Card Base ===== */
+.quiz-card,
+.shortanswer-card {
+  width: 100%; /* responsive */
+  max-width: 800px; /* limit card width */
+  background: rgba(20, 20, 30, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.15),
+              0 0 35px rgba(255, 0, 255, 0.1);
+  padding: 1.2rem;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+  overflow-x: hidden; /* prevent inner overflow */
+}
+
+.quiz-card:hover,
+.shortanswer-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.4),
+              0 0 40px rgba(255, 0, 255, 0.3);
+}
+
+/* ===== Buttons ===== */
+.btn-neon {
+  background: linear-gradient(135deg, #00ffe0, #ff00ff);
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.4px;
+  transition: all 0.3s ease;
+}
+
+.btn-neon:hover {
+  background: linear-gradient(135deg, #00ccff, #cc00ff);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5),
+              0 0 40px rgba(255, 0, 255, 0.4);
+}
+
+/* ===== Flashcards ===== */
+.flashcard {
+  width: 220px;
+  height: 150px;
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.flashcard-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.flashcard.flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+.flashcard-front,
+.flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  text-align: center;
+  background: rgba(20, 20, 30, 0.75);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.25),
+              0 0 25px rgba(255, 0, 255, 0.2);
+  color: #fff;
+}
+
+.flashcard-back {
+  transform: rotateY(180deg);
+  background: rgba(20, 20, 30, 0.85);
+}
+
+/* ===== Answer Reveal in Quiz ===== */
+.quiz-answer {
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  color: #00ffe0;
+  border-radius: 10px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}

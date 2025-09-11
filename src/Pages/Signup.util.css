@@ -1,0 +1,111 @@
+/* Background Wrapper */
+.signup-page-wrapper {
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #0f0f1f, #000000 80%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.signup-page-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 180deg at 50% 50%, #00ffe0, #ff00ff, #00ffe0);
+  animation: rotate 12s linear infinite;
+  opacity: 0.08;
+  z-index: 0;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Neon Glass Signup Card */
+.signup-card {
+  background: rgba(20, 20, 30, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3),
+              0 0 40px rgba(255, 0, 255, 0.2);
+  padding: 2rem;
+  width: 100%;
+  max-width: 460px;
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.signup-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 0 35px rgba(0, 255, 255, 0.5),
+              0 0 50px rgba(255, 0, 255, 0.4);
+}
+
+/* Neon Title */
+.neon-title1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00ffe0, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+}
+
+/* Input Fields */
+.glass-input {
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+  border-color: #00ffe0;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+  outline: none;
+}
+
+/* Neon Button */
+.btn-neon {
+  background: linear-gradient(135deg, #00ffe0, #ff00ff);
+  border: none;
+  border-radius: 12px;
+  padding: 0.85rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+}
+
+.btn-neon:hover {
+  background: linear-gradient(135deg, #00ccff, #cc00ff);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5),
+              0 0 40px rgba(255, 0, 255, 0.4);
+}
+
+/* Login Link */
+.login-link {
+  color: #00ffe0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.login-link:hover {
+  color: #ff00ff;
+  text-shadow: 0 0 8px rgba(255, 0, 255, 0.6);
+}

@@ -1,0 +1,106 @@
+/* Container background */
+.home-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at center, #0f0f1f, #000000 80%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Optional subtle moving neon aura behind card */
+.home-container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 180deg at 50% 50%, #00ffe0, #ff00ff, #00ffe0);
+  animation: rotate 12s linear infinite;
+  opacity: 0.06;
+  z-index: 0;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Card Styling */
+.home-card {
+  border-radius: 16px;
+  background: rgba(20, 20, 30, 0.75); /* glass-like dark card */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1; /* above aura */
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4), 0 0 40px rgba(255, 0, 255, 0.3);
+  border:1px solid #00ffe0
+}
+
+.home-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.7), 0 0 60px rgba(255, 0, 255, 0.5);
+}
+
+/* Title */
+.title {
+  font-weight: 700;
+  color: #00ffe0; /* neon cyan */
+}
+
+/* Input fields */
+.custom-input {
+  border-radius: 10px;
+  padding: 12px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(30, 30, 40, 0.6);
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.custom-input:focus {
+  border-color: #00ffe0;
+  box-shadow: 0 0 8px rgba(0, 255, 224, 0.6);
+  outline: none;
+  background: rgba(30, 30, 40, 0.8);
+}
+
+/* Join Button */
+.join-btn {
+  background: linear-gradient(90deg, #00ffe0, #ff00ff);
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #000;
+  transition: all 0.3s ease-in-out;
+}
+
+.join-btn:hover {
+  background: linear-gradient(90deg, #ff00ff, #00ffe0);
+  transform: scale(1.03);
+  box-shadow: 0 0 12px rgba(0, 255, 224, 0.8), 0 0 25px rgba(255, 0, 255, 0.6);
+}
+
+/* New Room Link */
+.new-room {
+  color: #00ffe0;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.new-room:hover {
+  color: #ff00ff;
+}

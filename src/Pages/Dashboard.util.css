@@ -1,0 +1,193 @@
+.carousel-wrapper {
+  min-height: 100vh;
+  perspective: 1000px;
+  text-align: center;
+  background: radial-gradient(circle at center, #0f0f1f, #000000 80%);
+  overflow: hidden;
+  position: relative;
+}
+
+/* subtle moving neon aura */
+.carousel-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    #00ffe0,
+    #ff00ff,
+    #00ffe0
+  );
+  animation: rotate 12s linear infinite;
+  opacity: 0.08;
+  z-index: 0;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  margin-top: 120px;
+  z-index: 1; /* keeps above bg aura */
+}
+
+.carousel-card {
+  position: absolute;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  opacity: 0;
+}
+
+.carousel-card[style] {
+  transform: rotateY(calc(var(--offset) * 60deg)) translateZ(500px);
+  opacity: calc(1 - (var(--offset) * 0.15));
+}
+
+/* 🔮 Neon Glass Card - Compact Version */
+.feature-card1{
+  width: 180px;
+  height: 240px;
+  background: rgba(20, 20, 30, 0.75);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5),
+              0 0 25px rgba(255, 0, 255, 0.3);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.25s ease-in-out;
+  text-align: center;
+}
+
+.feature-card1:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8),
+              0 0 40px rgba(255, 0, 255, 0.6);
+}
+
+/* Upper part → image fully covers */
+.card-upper {
+  flex: 1.2;
+  width: 100%;
+  height: 45%;
+  overflow: hidden;
+}
+
+.feature-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.9) drop-shadow(0 0 6px #00ffe0);
+}
+
+/* Lower part → text + button */
+.card-lower {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px;
+  background: rgba(10, 10, 20, 0.55);
+}
+
+.card-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 4px 0;
+  line-height: 1.1;
+  overflow-wrap: break-word;
+}
+
+.card-text {
+  font-size: 0.60rem;
+  color: #cfcfcf;
+  margin: 2px 0 6px;
+  line-height: 1.2;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Compact Button */
+.btn-custom {
+  font-size: 0.65rem;
+  padding: 4px 10px;
+  background: transparent;
+  border: 1px solid #00ffe0;
+  border-radius: 16px;
+  color: #00ffe0;
+  transition: all 0.3s ease;
+  align-self: center;
+}
+
+.btn-custom:hover {
+  background: #00ffe0;
+  color: #000;
+}
+
+/* Arrow buttons with neon glow */
+.arrow-btn {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(20, 20, 30, 0.7);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  z-index: 2;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.arrow-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 1),
+              0 0 40px rgba(255, 0, 255, 0.8);
+}
+
+/* Neon Triangle arrows */
+.arrow-btn.prev::before,
+.arrow-btn.next::before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.arrow-btn.prev::before {
+  border-width: 8px 12px 8px 0;
+  border-color: transparent #00ffe0 transparent transparent;
+}
+
+.arrow-btn.next::before {
+  border-width: 8px 0 8px 12px;
+  border-color: transparent transparent transparent #00ffe0;
+}
+.neon-title {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00ffe0, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* fallback for non-webkit */
+  text-transform: uppercase;
+}

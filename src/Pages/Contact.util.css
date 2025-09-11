@@ -1,0 +1,51 @@
+.contact-page {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  min-height: 100vh;
+  color: white;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 5;          
+}
+
+.contact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px #00f2fe33; 
+  z-index: 10; 
+}
+
+
+.contact-card .form-control {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  border-radius: 10px;
+  color: white;
+}
+
+.contact-card .form-control::placeholder {
+  color: #bbb;
+}
+
+.contact-card .form-control:focus {
+  background: rgba(255, 255, 255, 0.12);
+  outline: none;
+  box-shadow: 0 0 5px #00ffcc;
+}
+
+.btn-neon {
+  background: linear-gradient(90deg, #00f2fe, #4facfe);
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-neon:hover {
+  box-shadow: 0 0 15px #00f2fe, 0 0 30px #4facfe;
+}

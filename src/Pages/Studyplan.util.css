@@ -1,0 +1,142 @@
+/* ==== Full Dark Animated Background ==== */
+.studyplan-wrapper {
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #0f0f1f, #000000 85%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.studyplan-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 180deg at 50% 50%, #00ffe0, #ff00ff, #00ffe0);
+  animation: rotate 14s linear infinite;
+  opacity: 0.08;
+  z-index: 0;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==== Glass Card ==== */
+.glass-card {
+  width: 100%;
+  max-width: 950px;
+  padding: 30px;
+  border-radius: 18px;
+  background: rgba(20, 20, 30, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.25),
+              0 0 40px rgba(255, 0, 255, 0.2);
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 0 35px rgba(0, 255, 255, 0.45),
+              0 0 50px rgba(255, 0, 255, 0.35);
+}
+
+/* ==== Sub Card ==== */
+.glass-subcard {
+  padding: 20px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ddd;
+  width: 100% !important;
+}
+
+/* ==== Input Fields ==== */
+.glass-input {
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff !important;
+  transition: all 0.3s ease;
+}
+
+.glass-input::placeholder {
+  color: #bbb !important;
+}
+
+.glass-input:focus {
+  border-color: #00ffe0;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+  outline: none;
+}
+
+/* ==== Neon Button ==== */
+.btn-neon {
+  background: linear-gradient(135deg, #00ffe0, #ff00ff);
+  border: none;
+  border-radius: 14px;
+  padding: 0.85rem 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+}
+
+.btn-neon:hover {
+  background: linear-gradient(135deg, #00ccff, #cc00ff);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5),
+              0 0 40px rgba(255, 0, 255, 0.4);
+}
+
+/* ==== Neon Heading/Text ==== */
+.neon-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00ffe0, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+}
+
+/* ==== Links ==== */
+.neon-link {
+  color: #00ffe0;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.neon-link:hover {
+  color: #ff00ff;
+  text-shadow: 0 0 8px rgba(255, 0, 255, 0.6);
+}
+
+/* ==== YouTube Thumbnails ==== */
+.yt-thumb {
+  width: 200px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.yt-thumb:hover {
+  transform: scale(1.05);
+}
