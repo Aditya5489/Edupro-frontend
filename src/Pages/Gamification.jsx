@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import "./Gamification.util.css"; 
+import { config } from "../../../Backend/config/cloudinary";
 
 const baseURL = import.meta.env.VITE_API_URL;
 
@@ -18,11 +19,14 @@ const GamificationChallenge = () => {
     setFeedback("");
     setFixedCode("");
 
+    const token = localStorage.getItem("token");
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+
     try {
       const res = await axios.post(
         `${baseURL}/api/gamification/challenge`,
         { language },
-        { withCredentials: true }
+        config
       );
       setChallenge(res.data);
       setUserCode(res.data.buggyCode);
@@ -45,7 +49,7 @@ const GamificationChallenge = () => {
           language,
           description: challenge.description,
         },
-        { withCredentials: true }
+        config
       );
 
       setFeedback(
@@ -76,7 +80,7 @@ const GamificationChallenge = () => {
           language,
           description: challenge.description,
         },
-        { withCredentials: true }
+        config
       );
 
       setFixedCode(res.data.fixedCode);

@@ -18,12 +18,15 @@ const JobAnalyzer = () => {
 
   const [showSkillModal, setShowSkillModal] = useState(false);
 
+  const token = localStorage.getItem("token");
+  const config = { headers: { Authorization: `Bearer ${token}` } };
+
   useEffect(() => {
     const loadSkills = async () => {
       try {
         const res = await axios.get(`${baseURL}/api/skills`, {
           headers: { "Content-Type": "application/json" },
-          withCredentials: true,
+          config,
         });
         setSkills(res.data.skills || []);
       } catch (err) {
@@ -59,7 +62,7 @@ const JobAnalyzer = () => {
       const res = await axios.post(
         `${baseURL}/api/analyzejob`,
         { jdText },
-        { headers: { "Content-Type": "application/json" }, withCredentials: true }
+        { headers: { "Content-Type": "application/json" },config }
       );
       setExtracted(res.data.analysis);
     } catch (err) {
@@ -84,7 +87,7 @@ const JobAnalyzer = () => {
       await axios.post(
         `${baseURL}/api/skills`,
         { skillName: clean, proficiency: formProf },
-        { headers: { "Content-Type": "application/json" }, withCredentials: true }
+        { headers: { "Content-Type": "application/json" }, config }
       );
     } catch (err) {
       console.error("Error saving skill:", err.response?.data || err.message);
