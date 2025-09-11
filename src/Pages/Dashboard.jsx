@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import toast  from "react-hot-toast";
+import toast from "react-hot-toast";
 import "./Dashboard.util.css";
 
 import plangen from "../assets/plangen.jpg";
@@ -18,55 +18,23 @@ const FeatureHub = () => {
   const token = localStorage.getItem("token");
   const config = { headers: { Authorization: `Bearer ${token}` } };
 
- 
   const checkAuth = async () => {
+    if (!token) return false;
     try {
-      const res = await axios.get(`${baseURL}/api/auth/check`, {
-        ...config,
-      });
+      const res = await axios.get(`${baseURL}/api/auth/check`, config);
       return res.data.isLoggedIn;
-    } catch (err) {
+    } catch {
       return false;
     }
   };
 
   const features = [
-    {
-      title: "AI Study Plan Generator",
-      description: "Create a personalized day-by-day learning path tailored to your goals.",
-      image: plangen,
-      path: "/studyplan",
-    },
-    {
-      title: "Auto Content Builder",
-      description: "Upload notes or PDFs and generate MCQs, flashcards, and short-answer questions.",
-      image: quizgen,
-      path: "/quizbuilder",
-    },
-    {
-      title: "AI Job description analyzer",
-      description: "Analyze job descriptions with AI to find required skills, gaps, and tailored improvement tips.",
-      image: analysis,
-      path: "/jobanalyzer",
-    },
-    {
-      title: "Peer Collaboration Rooms",
-      description: "Collaborate in real-time with peers using whiteboards and chat.",
-      image: peercob,
-      path: "/homeroom",
-    },
-    {
-      title: "Gamification",
-      description: "Earn XP, badges, and climb the leaderboard while learning.",
-      image: gaming,
-      path: "/gamification",
-    },
-    {
-      title: "My Profile",
-      description: "View and manage your personal details, skills, badges, and progress.",
-      image: profile,
-      path: "/profile",
-    },
+    { title: "AI Study Plan Generator", description: "Create a personalized day-by-day learning path tailored to your goals.", image: plangen, path: "/studyplan" },
+    { title: "Auto Content Builder", description: "Upload notes or PDFs and generate MCQs, flashcards, and short-answer questions.", image: quizgen, path: "/quizbuilder" },
+    { title: "AI Job description analyzer", description: "Analyze job descriptions with AI to find required skills, gaps, and tailored improvement tips.", image: analysis, path: "/jobanalyzer" },
+    { title: "Peer Collaboration Rooms", description: "Collaborate in real-time with peers using whiteboards and chat.", image: peercob, path: "/homeroom" },
+    { title: "Gamification", description: "Earn XP, badges, and climb the leaderboard while learning.", image: gaming, path: "/gamification" },
+    { title: "My Profile", description: "View and manage your personal details, skills, badges, and progress.", image: profile, path: "/profile" },
   ];
 
   const [current, setCurrent] = useState(0);
@@ -74,7 +42,6 @@ const FeatureHub = () => {
   const next = () => setCurrent((prev) => (prev + 1) % features.length);
   const prev = () => setCurrent((prev) => (prev - 1 + features.length) % features.length);
 
-  // ✅ Handle navigation with auth check
   const handleNavigation = async (path) => {
     const loggedIn = await checkAuth();
     if (!loggedIn) {
@@ -87,7 +54,6 @@ const FeatureHub = () => {
   return (
     <div className="carousel-wrapper">
       <h1 className="neon-title1 mt-4 text-center">Welcome to Your Feature Hub</h1>
-
       <div className="carousel">
         {features.map((feature, i) => {
           const offset = (i - current + features.length) % features.length;
@@ -95,19 +61,12 @@ const FeatureHub = () => {
             <div
               key={i}
               className="carousel-card"
-              style={{
-                "--offset": offset,
-                "--total": features.length,
-              }}
-              onClick={() => handleNavigation(feature.path)} // 👈 updated
+              style={{ "--offset": offset, "--total": features.length }}
+              onClick={() => handleNavigation(feature.path)}
             >
               <div className="card feature-card1 text-center">
                 <div className="card-upper">
-                  <img
-                    src={feature.image}
-                    alt={feature.title}
-                    className="feature-img"
-                  />
+                  <img src={feature.image} alt={feature.title} className="feature-img" />
                 </div>
                 <div className="card-lower glass-effect p-3">
                   <h5 className="card-title">{feature.title}</h5>
@@ -116,7 +75,7 @@ const FeatureHub = () => {
                     className="btn btn-primary btn-custom"
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleNavigation(feature.path); // 👈 updated
+                      handleNavigation(feature.path);
                     }}
                   >
                     Explore
@@ -127,7 +86,6 @@ const FeatureHub = () => {
           );
         })}
       </div>
-
       <div className="controls d-flex justify-content-center gap-5" style={{ marginTop: "80px" }}>
         <button className="arrow-btn prev bg-dark" onClick={prev}></button>
         <button className="arrow-btn next bg-dark" onClick={next}></button>
