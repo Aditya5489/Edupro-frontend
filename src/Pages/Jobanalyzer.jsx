@@ -26,8 +26,8 @@ const JobAnalyzer = () => {
       try {
         const res = await axios.get(`${baseURL}/api/skills`, {
           headers: { "Content-Type": "application/json" },
-          config,
-        });
+          
+        },config);
         setSkills(res.data.skills || []);
       } catch (err) {
         console.error("Error fetching skills:", err.response?.data || err.message);
@@ -62,7 +62,7 @@ const JobAnalyzer = () => {
       const res = await axios.post(
         `${baseURL}/api/analyzejob`,
         { jdText },
-        { headers: { "Content-Type": "application/json" },config }
+        { headers: { "Content-Type": "application/json" } },config
       );
       setExtracted(res.data.analysis);
     } catch (err) {
@@ -87,7 +87,7 @@ const JobAnalyzer = () => {
       await axios.post(
         `${baseURL}/api/skills`,
         { skillName: clean, proficiency: formProf },
-        { headers: { "Content-Type": "application/json" }, config }
+        { headers: { "Content-Type": "application/json" },  },config
       );
     } catch (err) {
       console.error("Error saving skill:", err.response?.data || err.message);
