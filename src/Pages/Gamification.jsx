@@ -13,23 +13,16 @@ const GamificationChallenge = () => {
   const [fixedCode, setFixedCode] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("token");
-
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
   const getChallenge = async () => {
     setLoading(true);
     setFeedback("");
     setFixedCode("");
+
     try {
       const res = await axios.post(
         `${baseURL}/api/gamification/challenge`,
         { language },
-        config
+        { withCredentials: true }
       );
       setChallenge(res.data);
       setUserCode(res.data.buggyCode);
@@ -43,6 +36,7 @@ const GamificationChallenge = () => {
   const validateSolution = async () => {
     if (!userCode || !challenge) return;
     setLoading(true);
+
     try {
       const res = await axios.post(
         `${baseURL}/api/gamification/validate`,
@@ -51,14 +45,18 @@ const GamificationChallenge = () => {
           language,
           description: challenge.description,
         },
-        config
+        { withCredentials: true }
       );
+
       setFeedback(
         res.data.isCorrect
           ? "✅ Correct! +20 XP 🎉"
           : `❌ Incorrect: ${res.data.feedback}`
       );
-      if (res.data.isCorrect) setTimeout(() => getChallenge(), 1500);
+
+      if (res.data.isCorrect) {
+        setTimeout(() => getChallenge(), 1500);
+      }
     } catch {
       toast.error("Validation failed.");
     } finally {
@@ -69,6 +67,7 @@ const GamificationChallenge = () => {
   const correctCode = async () => {
     if (!userCode || !challenge) return;
     setLoading(true);
+
     try {
       const res = await axios.post(
         `${baseURL}/api/gamification/correct`,
@@ -77,8 +76,9 @@ const GamificationChallenge = () => {
           language,
           description: challenge.description,
         },
-        config
+        { withCredentials: true }
       );
+
       setFixedCode(res.data.fixedCode);
       setFeedback("🛠️ AI provided a corrected solution!");
     } catch {
@@ -90,19 +90,20 @@ const GamificationChallenge = () => {
 
   return (
     <div className="gamification-page-wrapper">
-      <div className="gamification-overlay"></div>
+      <div className="gamification-overlay "></div>
       <div className="container d-flex justify-content-center align-items-center min-vh-100">
         <div className="gamification-card">
           <h2 className="text-center neon-title1 mb-4">
-            Fix the AI Buggy Code Challenge
+             Fix the AI Buggy Code Challenge
           </h2>
+
           <div className="mb-3 text-start">
             <label className="form-label">Choose Language:</label>
             <select
               className="ml-2 p-2 border rounded glass-input"
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
-              style={{ marginLeft: "20px" }}
+              style={{marginLeft: "20px"}}
             >
               <option className="option">JavaScript</option>
               <option className="option">Python</option>
@@ -110,6 +111,7 @@ const GamificationChallenge = () => {
               <option className="option">C++</option>
             </select>
           </div>
+
           <button
             onClick={getChallenge}
             className="btn-neon w-100 mb-4"
@@ -117,36 +119,41 @@ const GamificationChallenge = () => {
           >
             {loading ? "Loading..." : "🎯 Get Challenge"}
           </button>
+
           {challenge && (
             <>
               <h3 className="text-lg font-bold">{challenge.title}</h3>
               <p className="text-gray-300 mb-3">{challenge.description}</p>
+
               <textarea
                 rows="10"
                 value={userCode}
                 onChange={(e) => setUserCode(e.target.value)}
-                className="border p-3 font-mono rounded glass-input"
+                className=" border p-3 font-mono rounded glass-input"
                 style={{ width: "100%" }}
               />
+
               <div className="mt-4 flex gap-8">
                 <button
-                  onClick={validateSolution}
-                  className="btn-neon1"
-                  disabled={loading}
+                    onClick={validateSolution}
+                    className="btn-neon1 "
+                    disabled={loading}
                 >
-                  ✅ Validate
+                    ✅ Validate
                 </button>
                 <button
-                  onClick={correctCode}
-                  className="btn-neon1"
-                  disabled={loading}
+                    onClick={correctCode}
+                    className="btn-neon1 "
+                    disabled={loading}
                 >
-                  🛠️ Fix with AI
+                    🛠️ Fix with AI
                 </button>
-              </div>
+                </div>
             </>
           )}
+
           {feedback && <p className="mt-4 neon-feedback">{feedback}</p>}
+
           {fixedCode && (
             <div className="mt-4">
               <h4 className="font-bold">AI Corrected Code:</h4>

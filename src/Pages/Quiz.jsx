@@ -10,14 +10,6 @@ export default function QuizGenerator() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
 
-   const token = localStorage.getItem("token");
-
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
   const handleTypeChange = (e) => {
     setSelectedType(e.target.value);
     setResult(null);
@@ -34,7 +26,9 @@ export default function QuizGenerator() {
     formData.append("type", selectedType);
 
     try {
-      const res = await axios.post(`${baseURL}/api/generatecontent`, formData, config);
+      const res = await axios.post(`${baseURL}/api/generatecontent`, formData, {
+        withCredentials: true,
+      });
       setResult(res.data);
     } catch (err) {
       console.error(err);
@@ -186,7 +180,7 @@ export default function QuizGenerator() {
         Challenge yourself with quizzes, reinforce learning using flashcards, and practice key concepts through short answer questions with AI-generated content.
       </p>
 
-      <div className="quiz-card mb-5 p-4 glass-card " style={{border:"1px solid #00f2ffff" , shadow:"0 0 20px #00f2ffff"}}>
+      <div className="quiz-card mb-5 p-4 glass-card " style={{border:"1px solid #00f2ffff" , border:"2px solid #00f2ffff"}}>
         <div className="mb-3">
           <label className="form-label text-white">Upload Your Notes</label>
           <input type="file" className="glass-input form-control" onChange={(e) => setFile(e.target.files[0])} />

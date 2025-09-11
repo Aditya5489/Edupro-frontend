@@ -18,16 +18,17 @@ const ProfileSection = () => {
 
   const fileInputRef = useRef(null);
 
-  const token = localStorage.getItem("token");
-  const config = { headers: { Authorization: `Bearer ${token}` } };
-
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`${baseURL}/api/profile`, config);
+        const res = await axios.get(`${baseURL}/api/profile`, {
+          withCredentials: true,
+        });
         setUser(res.data);
 
-        const plansRes = await axios.get(`${baseURL}/api/studyplan`, config);
+        const plansRes = await axios.get(`${baseURL}/api/studyplan`, {
+          withCredentials: true,
+        });
         setStudyPlans(plansRes.data);
       } catch (err) {
         console.error("Failed to fetch user profile:", err);
@@ -52,7 +53,7 @@ const ProfileSection = () => {
         `${baseURL}/api/profile/upload-profile-pic`,
         formData,
         {
-          "Authorization": `Bearer ${token}`,
+          withCredentials: true,
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
@@ -70,7 +71,8 @@ const ProfileSection = () => {
     try {
       await axios.post(
         `${baseURL}/api/studyplan/completed`,
-        { planId },config
+        { planId },
+        { withCredentials: true }
       );
       toast.success("Study Plan marked as completed 🎉");
       setStudyPlans((prev) =>
@@ -87,7 +89,7 @@ const ProfileSection = () => {
       await axios.post(
         `${baseURL}/api/studyplan/delete`,
         { planId },
-        config
+        { withCredentials: true }
       );
       toast.success("Study Plan deleted successfully 🗑️");
       setStudyPlans((prev) => prev.filter((p) => p._id !== planId));
