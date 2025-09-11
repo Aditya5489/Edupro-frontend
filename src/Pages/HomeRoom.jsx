@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import "./HomeRoom.util.css"; 
 
-const baseURL = import.meta.env.VITE_API_URL;
+
 
 const HomeRoom = () => {
   const navigate=useNavigate();
