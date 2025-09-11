@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import "./Gamification.util.css"; 
-import { config } from "../../../Backend/config/cloudinary";
+
 
 const baseURL = import.meta.env.VITE_API_URL;
 
