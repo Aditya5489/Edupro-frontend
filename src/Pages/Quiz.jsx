@@ -163,7 +163,7 @@ export default function QuizGenerator() {
         <h4 className="neon-text mb-3"> Generated Short Answer Questions:-</h4>
         <div className="d-flex flex-column gap-3">
           {parseShortAnswers(result.content).map((q) => (
-            <div key={q.id} className="p-3 border rounded bg-white shadow-sm">
+            <div key={q.id} className="p-3 border rounded bg-black text-neon shadow-sm">
               <strong>{q.id}. {q.text}</strong>
             </div>
           ))}
@@ -180,7 +180,7 @@ export default function QuizGenerator() {
         Challenge yourself with quizzes, reinforce learning using flashcards, and practice key concepts through short answer questions with AI-generated content.
       </p>
 
-      <div className="quiz-card mb-5 p-4 glass-card shadow-sm">
+      <div className="quiz-card mb-5 p-4 glass-card " style={{border:"1px solid #00f2ffff" , shadow:"0 0 20px #00f2ffff"}}>
         <div className="mb-3">
           <label className="form-label text-white">Upload Your Notes</label>
           <input type="file" className="glass-input form-control" onChange={(e) => setFile(e.target.files[0])} />

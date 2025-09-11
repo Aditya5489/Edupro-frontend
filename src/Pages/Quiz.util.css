@@ -127,6 +127,10 @@
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.25),
               0 0 25px rgba(255, 0, 255, 0.2);
   color: #fff;
+   word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+  overflow-y: auto;
 }
 
 .flashcard-back {

@@ -129,7 +129,7 @@ export default function StudyPlanGenerator() {
       {studyPlan && Array.isArray(studyPlan.plan) && (
         <div className="glass-card mt-5 ">
           <h3 className="fw-bold neon-text mb-4">Generated Study Plan :-</h3>
-          <div className="row g-4">
+          <div className="row g-4 mt-2">
             {studyPlan.plan.map((day) => (
               <div className="col-md-6" key={day.dayNumber}>
                 <div className="glass-subcard h-100">
@@ -139,7 +139,7 @@ export default function StudyPlanGenerator() {
                     </h5>
 
                     {/* Documentation Section */}
-                    <div className="mb-3">
+                    <div className="mb-3 mt-2">
                       <h6 className="fw-bold text-light">📘 Documentation & Articles</h6>
                       <ul className="list-unstyled">
                         {day.tasks.map((task, idx) => (

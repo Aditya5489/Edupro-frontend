@@ -120,6 +120,11 @@
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease, text-shadow 0.3s ease;
+  display: inline-block;
+  max-width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .neon-link:hover {
