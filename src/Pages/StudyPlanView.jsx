@@ -11,12 +11,13 @@ const StudyPlanView = () => {
   const [plan, setPlan] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const token = localStorage.getItem("token");
+  const config = { headers: { Authorization: `Bearer ${token}` } };
+
   useEffect(() => {
     const fetchPlan = async () => {
       try {
-        const res = await axios.get(`${baseURL}/api/studyplan/${id}`, {
-          withCredentials: true,
-        });
+        const res = await axios.get(`${baseURL}/api/studyplan/${id}`, config);
         setPlan(res.data);
       } catch (err) {
         toast.error("Failed to load plan");

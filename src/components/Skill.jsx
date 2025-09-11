@@ -16,12 +16,13 @@ const SkillsChart = () => {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const token = localStorage.getItem("token");
+  const config = { headers: { Authorization: `Bearer ${token}` } };
+
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const res = await axios.get(`${baseURL}/api/skills`, {
-          withCredentials: true,
-        });
+        const res = await axios.get(`${baseURL}/api/skills`, config);
 
         // Ensure array format
         const skillArray = Array.isArray(res.data)
