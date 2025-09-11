@@ -11,27 +11,11 @@ const HomeRoom = () => {
   const [roomId, setRoomId] = useState("");
   const [username, setUsername] = useState("");
 
-  const checkAuth = async () => {
-    try {
-      const res = await axios.get(`${baseURL}/api/auth/check`, {
-        withCredentials: true, 
-      });
-      return res.data.isLoggedIn;
-    } catch (err) {
-      return false;
-    }
-  };
+  
 
  
   const generateRoomId = async (e) => {
     e.preventDefault();
-
-    const loggedIn = await checkAuth();
-    if (!loggedIn) {
-      toast.error("Please login first");
-      navigate("/login");
-      return;
-    }
 
     const id = uuid();
     setRoomId(id);
@@ -40,12 +24,6 @@ const HomeRoom = () => {
 
   
   const joinRoom = async () => {
-    const loggedIn = await checkAuth();
-    if (!loggedIn) {
-      toast.error("Please login first");
-      navigate("/login");
-      return;
-    }
 
     if (!roomId || !username) {
       toast.error("Both fields are required");
