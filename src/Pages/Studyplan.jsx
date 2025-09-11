@@ -16,6 +16,14 @@ export default function StudyPlanGenerator() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const token = localStorage.getItem("token");
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -37,7 +45,7 @@ export default function StudyPlanGenerator() {
           skillLevel: formData.skillLevel,
           durationInDays: Number(formData.durationInDays)
         },
-        { withCredentials: true }
+        config
       );
       setStudyPlan(res.data);
     } catch (err) {

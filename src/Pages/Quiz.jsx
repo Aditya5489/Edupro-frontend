@@ -10,6 +10,14 @@ export default function QuizGenerator() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
 
+   const token = localStorage.getItem("token");
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
   const handleTypeChange = (e) => {
     setSelectedType(e.target.value);
     setResult(null);
@@ -26,9 +34,7 @@ export default function QuizGenerator() {
     formData.append("type", selectedType);
 
     try {
-      const res = await axios.post(`${baseURL}/api/generatecontent`, formData, {
-        withCredentials: true,
-      });
+      const res = await axios.post(`${baseURL}/api/generatecontent`, formData, config);
       setResult(res.data);
     } catch (err) {
       console.error(err);

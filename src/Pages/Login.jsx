@@ -19,20 +19,31 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post(`${baseURL}/api/login`, formData, {
-        withCredentials: true,
-      });
+  e.preventDefault();
+  try {
+    const res = await axios.post(`${baseURL}/api/login`, formData);
+
+    if (res.data.token) {
+      
+      localStorage.setItem("token", res.data.token);
+
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+
       toast.success("Login successful!");
+
       setTimeout(() => {
         navigate("/skills");
       }, 2000);
+
       console.log(res.data);
-    } catch (err) {
-      toast.error(err.response?.data?.message || "Login failed");
+    } else {
+      toast.error("Login failed: No token returned");
     }
-  };
+  } catch (err) {
+    toast.error(err.response?.data?.message || "Login failed");
+    console.error(err);
+  }
+};
 
   return (
     <div className="login-page-wrapper">

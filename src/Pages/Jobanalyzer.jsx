@@ -18,19 +18,18 @@ const JobAnalyzer = () => {
 
   const [showSkillModal, setShowSkillModal] = useState(false);
 
+  const token = localStorage.getItem("token");
+  const config = { headers: { Authorization: `Bearer ${token}` } };
+
   useEffect(() => {
     const loadSkills = async () => {
       try {
-        const res = await axios.get(`${baseURL}/api/skills`, {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        });
+        const res = await axios.get(`${baseURL}/api/skills`, config);
         setSkills(res.data.skills || []);
       } catch (err) {
-        console.error("Error fetching skills:", err.response?.data || err.message);
+        console.error(err.response?.data || err.message);
       }
     };
-
     loadSkills();
   }, []);
 
