@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import "./Signup.util.css"; // shared CSS for Login & Signup
+import "./Signup.util.css"; 
 
 const baseURL = import.meta.env.VITE_API_URL;
 

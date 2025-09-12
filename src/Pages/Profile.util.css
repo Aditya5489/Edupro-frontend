@@ -1,6 +1,6 @@
 
 
-/* Full page neon aura background */
+
 body {
   margin: 0;
   padding: 0;
@@ -11,7 +11,7 @@ body {
   color: #fff;
 }
 
-/* Neon aura overlay */
+
 body::before {
   content: "";
   position: fixed;
@@ -31,7 +31,7 @@ body::before {
   }
 }
 
-/* Profile card stays above the aura */
+
 .profile-wrapper {
   position: relative;
   z-index: 1;
@@ -56,7 +56,7 @@ body::before {
   }
 }
 
-/* keep content above neon aura */
+
 .profile-header,
 .profile-stats,
 .profile-img,

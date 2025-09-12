@@ -5,7 +5,7 @@
   color: white;
 }
 
-/* Hero section */
+
 .about-hero {
   background: rgba(26, 26, 46, 0.95);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -17,7 +17,7 @@
   line-height: 1.7;
 }
 
-/* Image card */
+
 .about-image-card {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 20px;
@@ -32,7 +32,7 @@
   transform: scale(1.05);
 }
 
-/* Features section */
+
 .about-features {
   background: rgba(22, 33, 62, 0.9);
 }

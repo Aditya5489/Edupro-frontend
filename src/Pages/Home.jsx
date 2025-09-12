@@ -14,11 +14,17 @@ const baseURL = import.meta.env.VITE_API_URL;
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const getAuthConfig = () => {
+    return {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+  }
   useEffect(() => {
     const checkAuth = async () => {
       try {
         const res = await axios.get(`${baseURL}/api/auth/check`, {
-          withCredentials: true, // send cookies
+          ...getAuthConfig(),
         });
         if (res.data.isLoggedIn) setIsLoggedIn(true);
       } catch {

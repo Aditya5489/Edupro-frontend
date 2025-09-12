@@ -1,4 +1,4 @@
-/* ===== Full Page Background ===== */
+
 .job-page-wrapper {
   min-height: 100vh;
   background: radial-gradient(circle at center, #0f0f1f, #000000 80%);
@@ -30,7 +30,7 @@
   }
 }
 
-/* ===== Titles ===== */
+
 .neon-title, .neon-text {
   font-weight: 700;
   background: linear-gradient(90deg, #00ffe0, #ff00ff);
@@ -46,7 +46,7 @@
   -webkit-text-fill-color: unset;
 }
 
-/* ===== Glass Card ===== */
+
 .glass-card {
   width: 90%;
   background: rgba(20, 20, 30, 0.7);
@@ -69,7 +69,7 @@
               0 0 40px rgba(255, 0, 255, 0.3);
 }
 
-/* ===== Inputs ===== */
+
 .glass-input {
   background: rgba(255, 255, 255, 0.05);
   color: #fff;
@@ -83,7 +83,7 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* ===== Buttons ===== */
+
 .btn-neon {
   background: linear-gradient(135deg, #00ffe0, #ff00ff);
   border: none;
@@ -102,24 +102,24 @@
               0 0 40px rgba(255, 0, 255, 0.4);
 }
 
-/* ===== Badge Styling ===== */
+
 .badge {
   font-size: 0.85rem;
   padding: 0.45rem 0.7rem;
 }
 
-/* ===== Modal ===== */
+
 .modal-content.glass-card {
   background: rgba(20, 20, 30, 0.85);
   color: #fff;
 }
 
-/* ===== Progress Bar ===== */
+
 .progress-bar {
   background: linear-gradient(135deg, #00ffe0, #ff00ff);
 }
 
-/* ===== Scrollbar Styling (optional) ===== */
+
 .job-page-wrapper::-webkit-scrollbar {
   width: 10px;
 }
@@ -133,7 +133,7 @@
   border-radius: 10px;
 }
 
-/* ===== Small Adjustments ===== */
+
 .text-white {
   color: #fff !important;
 }

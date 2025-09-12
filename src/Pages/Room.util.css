@@ -1,23 +1,23 @@
-/* Fill the content-wrap height */
+
 .room-container {
   display: flex;
   height: 100%;
-  min-height: 0; /* fixes overflow pushing footer */
+  min-height: 0; 
 }
 
-/* Sidebar */
+
 .sidebar {
-  width: 240px;              /* fixed width */
-  height: 100vh;             /* full height */
-  position: fixed;           /* lock it to the left */
+  width: 240px;              
+  height: 100vh;             
+  position: fixed;           
   top: 0;
   left: 0;
-  z-index: 1000;             /* keep above editor */
+  z-index: 1000;            
   display: flex;
   flex-direction: column;
 }
 
-/* Scrollable participants */
+
 .sidebar-list {
   flex: 1;
   min-height: 0;
@@ -25,13 +25,13 @@
   margin: 1rem 0;
 }
 
-/* Bottom area */
+
 .sidebar-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   padding-top: 1rem;
 }
 
-/* Editor stretches */
+
 .editor {
   flex: 1;
   display: flex;
@@ -41,7 +41,7 @@
   padding: 1rem;
 }
 
-/* Center editor content */
+
 .editor-content {
   flex: 1;
   display: flex;

@@ -1,4 +1,4 @@
-/* Container background */
+
 .home-container {
   min-height: 100vh;
   display: flex;
@@ -11,7 +11,7 @@
   overflow: hidden;
 }
 
-/* Optional subtle moving neon aura behind card */
+
 .home-container::before {
   content: "";
   position: absolute;
@@ -31,10 +31,10 @@
   }
 }
 
-/* Card Styling */
+
 .home-card {
   border-radius: 16px;
-  background: rgba(20, 20, 30, 0.75); /* glass-like dark card */
+  background: rgba(20, 20, 30, 0.75); 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 2rem;
@@ -49,13 +49,13 @@
   box-shadow: 0 0 30px rgba(0, 255, 255, 0.7), 0 0 60px rgba(255, 0, 255, 0.5);
 }
 
-/* Title */
+
 .title {
   font-weight: 700;
-  color: #00ffe0; /* neon cyan */
+  color: #00ffe0; 
 }
 
-/* Input fields */
+
 .custom-input {
   border-radius: 10px;
   padding: 12px 15px;
@@ -76,7 +76,7 @@
   background: rgba(30, 30, 40, 0.8);
 }
 
-/* Join Button */
+
 .join-btn {
   background: linear-gradient(90deg, #00ffe0, #ff00ff);
   border: none;
@@ -92,7 +92,7 @@
   box-shadow: 0 0 12px rgba(0, 255, 224, 0.8), 0 0 25px rgba(255, 0, 255, 0.6);
 }
 
-/* New Room Link */
+
 .new-room {
   color: #00ffe0;
   font-weight: 600;

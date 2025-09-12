@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 const baseURL = import.meta.env.VITE_API_URL;
 
 const StudyPlanView = () => {
-  const { id } = useParams(); // get plan ID from URL
+  const { id } = useParams(); 
   const navigate = useNavigate();
   const [plan, setPlan] = useState(null);
   const [loading, setLoading] = useState(true);

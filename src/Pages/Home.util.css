@@ -1,4 +1,4 @@
-/* Whole Page Background with subtle neon animation */
+
 .home-page {
   min-height: 100vh;
   background: radial-gradient(circle at center, #0f0f1f, #000000 80%);
@@ -6,7 +6,7 @@
   overflow: hidden;
 }
 
-/* Neon aura animation */
+
 .home-page::before {
   content: "";
   position: absolute;
@@ -26,14 +26,14 @@
   }
 }
 
-/* Keep content above background */
+
 .hero-section,
 .features-section {
   position: relative;
   z-index: 1;
 }
 
-/* Hero Text */
+
 .hero-text {
   color: #dcdcdc;
   font-size: 1.15rem;
@@ -41,7 +41,7 @@
   letter-spacing: 0.3px;
 }
 
-/* Hero Image Cards */
+
 .hero-image-card {
   border-radius: 15px;
   overflow: hidden;
@@ -79,7 +79,7 @@
   flex: 1;
 }
 
-/* Responsive */
+
 @media (max-width: 992px) {
   .tall-card,
   .half-card {
@@ -140,7 +140,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Neon Title */
+
 .neon-title {
   font-size: 2.2rem;
   font-weight: 700;

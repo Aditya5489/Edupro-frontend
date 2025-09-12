@@ -1,4 +1,4 @@
-/* Background wrapper (reuse from login/signup) */
+
 .login-page-wrapper {
   min-height: 100vh;
   background: radial-gradient(circle at center, #0f0f1f, #000000 80%);
@@ -28,7 +28,7 @@
   }
 }
 
-/* Neon Glass Card */
+
 .login-card2 {
   background: rgba(20, 20, 30, 0.8);
   backdrop-filter: blur(12px);
@@ -50,7 +50,7 @@
               0 0 50px rgba(255, 0, 255, 0.4);
 }
 
-/* Neon Title */
+
 .neon-title {
   font-size: 2rem;
   font-weight: 700;
@@ -60,7 +60,7 @@
   text-transform: uppercase;
 }
 
-/* Inputs & Selects */
+
 .glass-input {
   border-radius: 12px !important;
   padding: 0.75rem 1rem !important;
@@ -81,7 +81,7 @@
   opacity: 1; 
 }
 
-/* Buttons */
+
 .btn-neon {
   background: linear-gradient(135deg, #00ffe0, #ff00ff);
   border: none;
@@ -101,7 +101,7 @@
               0 0 40px rgba(255, 0, 255, 0.4);
 }
 
-/* Remove button */
+
 .remove-btn {
   border-radius: 8px;
   font-weight: bold;
