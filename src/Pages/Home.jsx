@@ -14,8 +14,9 @@ const baseURL = import.meta.env.VITE_API_URL;
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  
   const getAuthConfig = () => {
+    const token = localStorage.getItem("token");
     return {
       headers: { Authorization: `Bearer ${token}` },
     };
