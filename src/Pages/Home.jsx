@@ -15,18 +15,18 @@ const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   
-  const getAuthConfig = () => {
-    const token = localStorage.getItem("token");
-    return {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-  }
+  const token = localStorage.getItem("token");
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
+    }
+  };
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get(`${baseURL}/api/auth/check`, {
-          ...getAuthConfig(),
-        });
+        const res = await axios.get(`${baseURL}/api/auth/check`, config);
         if (res.data.isLoggedIn) setIsLoggedIn(true);
       } catch {
         setIsLoggedIn(false);
