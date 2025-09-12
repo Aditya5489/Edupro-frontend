@@ -13,7 +13,7 @@ const GamificationChallenge = () => {
   const [fixedCode, setFixedCode] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // 🔹 Helper to get auth config
+  
   const getAuthConfig = () => {
     const token = localStorage.getItem("token");
     return {
@@ -58,15 +58,13 @@ const GamificationChallenge = () => {
 
       setFeedback(
         res.data.isCorrect
-          ? "✅ Correct! +20 XP 🎉"
+          ?toast.success("✅ Correct! +20 XP 🎉")
           : `❌ Incorrect: ${res.data.feedback}`
       );
 
-      if (res.data.isCorrect) {
-        setTimeout(() => getChallenge(), 1500);
-      }
+      
     } catch {
-      toast.error("Validation failed.");
+      toast.error("Server busy. Try again later.");
     } finally {
       setLoading(false);
     }
