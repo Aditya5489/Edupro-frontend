@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import "./Gamification.util.css"; 
-
+import "./Gamification.util.css";
 
 const baseURL = import.meta.env.VITE_API_URL;
 
@@ -14,19 +13,24 @@ const GamificationChallenge = () => {
   const [fixedCode, setFixedCode] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // 🔹 Helper to get auth config
+  const getAuthConfig = () => {
+    const token = localStorage.getItem("token");
+    return {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+  };
+
   const getChallenge = async () => {
     setLoading(true);
     setFeedback("");
     setFixedCode("");
 
-    const token = localStorage.getItem("token");
-    const config = { headers: { Authorization: `Bearer ${token}` } };
-
     try {
       const res = await axios.post(
         `${baseURL}/api/gamification/challenge`,
         { language },
-        config
+        getAuthConfig()
       );
       setChallenge(res.data);
       setUserCode(res.data.buggyCode);
@@ -49,7 +53,7 @@ const GamificationChallenge = () => {
           language,
           description: challenge.description,
         },
-        config
+        getAuthConfig()
       );
 
       setFeedback(
@@ -80,7 +84,7 @@ const GamificationChallenge = () => {
           language,
           description: challenge.description,
         },
-        config
+        getAuthConfig()
       );
 
       setFixedCode(res.data.fixedCode);
@@ -98,7 +102,7 @@ const GamificationChallenge = () => {
       <div className="container d-flex justify-content-center align-items-center min-vh-100">
         <div className="gamification-card">
           <h2 className="text-center neon-title1 mb-4">
-             Fix the AI Buggy Code Challenge
+            Fix the AI Buggy Code Challenge
           </h2>
 
           <div className="mb-3 text-start">
@@ -107,7 +111,7 @@ const GamificationChallenge = () => {
               className="ml-2 p-2 border rounded glass-input"
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
-              style={{marginLeft: "20px"}}
+              style={{ marginLeft: "20px" }}
             >
               <option className="option">JavaScript</option>
               <option className="option">Python</option>
@@ -133,26 +137,26 @@ const GamificationChallenge = () => {
                 rows="10"
                 value={userCode}
                 onChange={(e) => setUserCode(e.target.value)}
-                className=" border p-3 font-mono rounded glass-input"
+                className="border p-3 font-mono rounded glass-input"
                 style={{ width: "100%" }}
               />
 
               <div className="mt-4 flex gap-8">
                 <button
-                    onClick={validateSolution}
-                    className="btn-neon1 "
-                    disabled={loading}
+                  onClick={validateSolution}
+                  className="btn-neon1"
+                  disabled={loading}
                 >
-                    ✅ Validate
+                  ✅ Validate
                 </button>
                 <button
-                    onClick={correctCode}
-                    className="btn-neon1 "
-                    disabled={loading}
+                  onClick={correctCode}
+                  className="btn-neon1"
+                  disabled={loading}
                 >
-                    🛠️ Fix with AI
+                  🛠️ Fix with AI
                 </button>
-                </div>
+              </div>
             </>
           )}
 
