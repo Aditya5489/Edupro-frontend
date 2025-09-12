@@ -56,11 +56,16 @@ const GamificationChallenge = () => {
         getAuthConfig()
       );
 
-      setFeedback(
-        res.data.isCorrect
-          ?toast.success("✅ Correct! +20 XP 🎉")
-          : `❌ Incorrect: ${res.data.feedback}`
-      );
+      setFeedback(""); 
+
+      if (res.data.isCorrect) {
+        toast.success(" Correct! +20 XP 🎉");
+        setFeedback("✅ Correct! +20 XP 🎉");
+      } else {
+        toast.error(`❌ Incorrect: ${res.data.feedback}`);
+        setFeedback(`❌ Incorrect: ${res.data.feedback}`);
+      }
+
 
       
     } catch {

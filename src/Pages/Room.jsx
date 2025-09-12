@@ -159,7 +159,7 @@ const Room = () => {
                 socketRef.current.emit("leave-room", { roomId }); 
                 socketRef.current.disconnect(); 
               }
-              navigate("/homeroom"); 
+              navigate("/dashboard"); 
             }}
           >
             Leave Room

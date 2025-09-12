@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-x: hidden; /* prevent horizontal scroll */
+  overflow-x: hidden; 
   overflow-y: auto;
   padding: 2rem;
   position: relative;
@@ -13,11 +13,11 @@
 
 .quiz-page-wrapper::before {
   content: "";
-  position: fixed; /* change from absolute to fixed to prevent overflow */
-  top: 0;
-  left: 0;
-  width: 100vw; /* full viewport width */
-  height: 100vh; /* full viewport height */
+  position: fixed; 
+  top: -50%;
+  left: -50%;
+  width: 200%; 
+  height: 200%; 
   background: conic-gradient(from 180deg at 50% 50%, #00ffe0, #ff00ff, #00ffe0);
   animation: rotate 14s linear infinite;
   opacity: 0.08;
