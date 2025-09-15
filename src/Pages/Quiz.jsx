@@ -193,9 +193,12 @@ export default function QuizGenerator() {
             <option value="short-answer" className="option">🧩 Short Answer Questions</option>
           </select>
         </div>
-        <button className="btn-neon1" onClick={handleGenerate} disabled={loading}>
-          {loading ? "Generating..." : "🚀 Generate"}
-        </button>
+        <div className="text-center mt-4">
+          <button className="btn-neon" onClick={handleGenerate} disabled={loading}>
+            {loading ? "Generating..." : "🚀 Generate"}
+          </button>
+        </div>
+        
       </div>
 
       {renderQuiz()}
