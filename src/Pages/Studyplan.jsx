@@ -121,7 +121,7 @@ export default function StudyPlanGenerator() {
             onClick={generatePlan}
             disabled={loading}
           >
-            {loading ? "Generating..." : "Generate Plan"}
+            {loading ? "Generating..." : "🚀 Generate Plan"}
           </button>
         </div>
 
