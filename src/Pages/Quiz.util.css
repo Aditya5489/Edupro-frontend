@@ -71,7 +71,7 @@
 }
 
 
-.btn-neon {
+.btn-neon1 {
   background: linear-gradient(135deg, #00ffe0, #ff00ff);
   border: none;
   border-radius: 10px;
@@ -80,9 +80,11 @@
   color: #fff;
   letter-spacing: 0.4px;
   transition: all 0.3s ease;
+  cursor: pointer;
+  margin-left: 50%;
 }
 
-.btn-neon:hover {
+.btn-neon1:hover {
   background: linear-gradient(135deg, #00ccff, #cc00ff);
   transform: translateY(-2px) scale(1.03);
   box-shadow: 0 0 25px rgba(0, 255, 255, 0.5),
