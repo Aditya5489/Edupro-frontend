@@ -81,7 +81,7 @@
   letter-spacing: 0.4px;
   transition: all 0.3s ease;
   cursor: pointer;
-  margin-left: 50%;
+  width: 100%;
 }
 
 .btn-neon1:hover {
