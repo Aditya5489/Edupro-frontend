@@ -10,6 +10,9 @@ const baseURL = import.meta.env.VITE_API_URL;
 const MultiSkillForm = () => {
   const navigate = useNavigate();
   const [skills, setSkills] = useState([{ skillName: "", proficiency: "Beginner" }]);
+  
+  const token = localStorage.getItem("token");
+  const config = { headers: { Authorization: `Bearer ${token}` } };
 
   const handleChange = (index, field, value) => {
     const updated = [...skills];
@@ -35,7 +38,7 @@ const MultiSkillForm = () => {
       await axios.post(
         `${baseURL}/api/skills/multiple`,
         { skills: payload },
-        { withCredentials: true }
+        config
       );
       toast.success("Skills added successfully!");
       setSkills([{ skillName: "", proficiency: "Beginner" }]);
