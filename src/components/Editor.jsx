@@ -10,7 +10,6 @@ import { closeBrackets } from "@codemirror/autocomplete";
 
 const baseURL = import.meta.env.VITE_API_URL;
 
-
 const languages = {
   javascript: javascript(),
   python: python(),
@@ -24,46 +23,56 @@ const Editor = ({ socketRef, roomId, code, onCodeChange }) => {
   const [output, setOutput] = useState("");
 
   useEffect(() => {
-    if (socketRef.current) {
-      socketRef.current.emit("get-code", { roomId });
+    if (!socketRef.current) return;
 
-      socketRef.current.on("send-code", ({ socketId }) => {
-        socketRef.current.emit("send-code", { code, socketId });
-      });
-    }
+    socketRef.current.emit("get-code", { roomId });
 
-    return () => {
-      if (socketRef.current) {
-        socketRef.current.off("send-code");
+    socketRef.current.on("code-change", ({ code }) => {
+      if (code !== null && code !== undefined) {
+        onCodeChange(code);
       }
-    };
-  }, [socketRef, roomId, code]);
-
-  const runCode = async () => {
-  setOutput("Running...");
-  try {
-    const res = await fetch(`${baseURL}/api/run-code`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ code, language }),
     });
 
-    let data;
-    try {
-      data = await res.json();
-    } catch {
-      data = { error: "No response from server" };
-    }
+    return () => {
+      socketRef.current.off("code-change");
+    };
+  }, [socketRef, roomId, onCodeChange]);
 
-    setOutput(data.output || data.error || "No output");
-  } catch (err) {
-    setOutput("Error: " + err.message);
-  }
-};
+  const handleCodeChange = (value) => {
+    onCodeChange(value);
+    if (socketRef.current) {
+      socketRef.current.emit("code-change", { roomId, code: value });
+    }
+  };
+
+  const runCode = async () => {
+    setOutput("Running...");
+    try {
+      const res = await fetch(`${baseURL}/api/run-code`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code, language }),
+      });
+
+      let data;
+      try {
+        data = await res.json();
+      } catch {
+        data = { error: "No response from server" };
+      }
+
+      setOutput(data.output || data.error || "No output");
+    } catch (err) {
+      setOutput("Error: " + err.message);
+    }
+  };
 
   return (
-    <div className="editor-container container mt-4 h-100 w-100" style={{ display: "flex", flexDirection: "column" }}>
-      <div className="card shadow-lg border-2" style={{"border":"1px solid white"}}>
+    <div
+      className="editor-container container mt-4 h-100 w-100"
+      style={{ display: "flex", flexDirection: "column" }}
+    >
+      <div className="card shadow-lg border-2" style={{ border: "1px solid white" }}>
         <div className="card-header d-flex justify-content-between align-items-center bg-dark text-light">
           <h5 className="mb-0">💻 Code Editor</h5>
           <div className="d-flex align-items-center gap-2">
@@ -93,14 +102,7 @@ const Editor = ({ socketRef, roomId, code, onCodeChange }) => {
               }}
             >
               {Object.keys(languages).map((lang) => (
-                <option
-                  key={lang}
-                  value={lang}
-                  style={{
-                    backgroundColor: "#1e1e2f",
-                    color: "#f0f0f0",
-                  }}
-                >
+                <option key={lang} value={lang}>
                   {lang.toUpperCase()}
                 </option>
               ))}
@@ -126,15 +128,16 @@ const Editor = ({ socketRef, roomId, code, onCodeChange }) => {
             height="500px"
             theme={dracula}
             extensions={[languages[language], closeBrackets()]}
-            onChange={(value) => onCodeChange(value)}
+            onChange={handleCodeChange}
             style={{ flexGrow: 1, height: "100%" }}
           />
         </div>
 
-        {/* Output Panel */}
         <div className="card-footer bg-dark text-light">
           <h6>Output:</h6>
-          <pre style={{ whiteSpace: "pre-wrap", minHeight: "50px" }}>{output}</pre>
+          <pre style={{ whiteSpace: "pre-wrap", minHeight: "50px" }}>
+            {output}
+          </pre>
         </div>
       </div>
     </div>
